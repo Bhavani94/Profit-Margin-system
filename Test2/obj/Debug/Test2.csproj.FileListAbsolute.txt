@@ -1,0 +1,13 @@
+E:\TestApp\Test2\Test2\bin\Test2.dll
+E:\TestApp\Test2\Test2\bin\Test2.pdb
+E:\TestApp\Test2\Test2\obj\Debug\Test2.csprojResolveAssemblyReference.cache
+E:\TestApp\Test2\Test2\obj\Debug\Test2.dll
+E:\TestApp\Test2\Test2\obj\Debug\Test2.pdb
+E:\TestApp\Test2\Test2\bin\BLL.dll
+E:\TestApp\Test2\Test2\bin\DAL.dll
+E:\TestApp\Test2\Test2\bin\EF.dll
+E:\TestApp\Test2\Test2\bin\EntityFramework.dll
+E:\TestApp\Test2\Test2\bin\BLL.pdb
+E:\TestApp\Test2\Test2\bin\DAL.pdb
+E:\TestApp\Test2\Test2\bin\EF.pdb
+E:\TestApp\Test2\Test2\bin\EntityFramework.xml

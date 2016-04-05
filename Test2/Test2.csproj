@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{84F585A5-A80E-4443-85CE-BD2185281681}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Test2</RootNamespace>
+    <AssemblyName>Test2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Associate.aspx" />
+    <Content Include="Pages\home.aspx" />
+    <Content Include="Pages\Manager.aspx" />
+    <Content Include="Handlers\addExpenses.ashx" />
+    <Content Include="Handlers\getExpenses.ashx" />
+    <Content Include="Handlers\viewTimesheet.ashx" />
+    <Content Include="Handlers\addTime.ashx" />
+    <Content Include="Handlers\totExpenses.ashx" />
+    <Content Include="Handlers\viewProject.ashx" />
+    <Content Include="Handlers\totalexpenses.ashx" />
+    <Content Include="Handlers\profitmargin.ashx" />
+    <Content Include="Handlers\impbysalary.ashx" />
+    <None Include="Resources\JS\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Pages\mvnzcx,.aspx" />
+    <Content Include="Pages\Supervisor.aspx" />
+    <Content Include="Resources\Images\coins.png" />
+    <Content Include="Resources\Images\exp.png" />
+    <Content Include="Resources\Images\expdsp.png" />
+    <Content Include="Resources\Images\Logo_Cognizant.png" />
+    <Content Include="Resources\Images\pro.jpg" />
+    <Content Include="Resources\Images\project.png" />
+    <Content Include="Resources\Images\time.png" />
+    <Content Include="Resources\Images\time_check.png" />
+    <Content Include="Resources\JS\classie.js" />
+    <Content Include="Resources\JS\colorfinder-1.1.js" />
+    <Content Include="Resources\JS\designation.js" />
+    <Content Include="Resources\JS\gridScrollFx.js" />
+    <Content Include="Resources\JS\imagesloaded.pkgd.min.js" />
+    <Content Include="Resources\JS\jquery-1.4.1.js" />
+    <Content Include="Resources\JS\jquery-1.4.1.min.js" />
+    <Content Include="Resources\JS\masonry.pkgd.min.js" />
+    <Content Include="Resources\JS\modernizr.customBlock.js" />
+    <Content Include="Resources\Styles\blocks.css" />
+    <Content Include="Resources\Styles\layout.css" />
+    <Content Include="Resources\Styles\normalise.css" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Handlers\addExpenses.ashx.cs">
+      <DependentUpon>addExpenses.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\addTime.ashx.cs">
+      <DependentUpon>addTime.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\getExpenses.ashx.cs">
+      <DependentUpon>getExpenses.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\impbysalary.ashx.cs">
+      <DependentUpon>impbysalary.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\profitmargin.ashx.cs">
+      <DependentUpon>profitmargin.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\totalexpenses.ashx.cs">
+      <DependentUpon>totalexpenses.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\totExpenses.ashx.cs">
+      <DependentUpon>totExpenses.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\viewProject.ashx.cs">
+      <DependentUpon>viewProject.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\viewTimesheet.ashx.cs">
+      <DependentUpon>viewTimesheet.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Associate.aspx.cs">
+      <DependentUpon>Associate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Associate.aspx.designer.cs">
+      <DependentUpon>Associate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\home.aspx.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\home.aspx.designer.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Manager.aspx.cs">
+      <DependentUpon>Manager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Manager.aspx.designer.cs">
+      <DependentUpon>Manager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\mvnzcx,.aspx.cs">
+      <DependentUpon>mvnzcx,.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\mvnzcx,.aspx.designer.cs">
+      <DependentUpon>mvnzcx,.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Supervisor.aspx.cs">
+      <DependentUpon>Supervisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Supervisor.aspx.designer.cs">
+      <DependentUpon>Supervisor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{c61bdafb-840c-4f71-b610-422bd6f15835}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{1216764b-b4f6-4fc0-ab18-67b19c68dc1e}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EF\EF.csproj">
+      <Project>{3ea6d425-e740-4f08-b4bd-6f5b28709179}</Project>
+      <Name>EF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52933/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
