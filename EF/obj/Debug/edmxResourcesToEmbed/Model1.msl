@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProfitProModelStoreContainer" CdmEntityContainer="ProfitProEntities">
+    <EntitySetMapping Name="Tbl_Associate">
+      <EntityTypeMapping TypeName="ProfitProModel.Tbl_Associate">
+        <MappingFragment StoreEntitySet="Tbl_Associate">
+          <ScalarProperty Name="AssociateID" ColumnName="AssociateID" />
+          <ScalarProperty Name="AName" ColumnName="AName" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Associatelogin">
+      <EntityTypeMapping TypeName="ProfitProModel.Tbl_Associatelogin">
+        <MappingFragment StoreEntitySet="Tbl_Associatelogin">
+          <ScalarProperty Name="AssociateID" ColumnName="AssociateID" />
+          <ScalarProperty Name="APassword" ColumnName="APassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_ContractTerms">
+      <EntityTypeMapping TypeName="ProfitProModel.Tbl_ContractTerms">
+        <MappingFragment StoreEntitySet="Tbl_ContractTerms">
+          <ScalarProperty Name="ContractTermID" ColumnName="ContractTermID" />
+          <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+          <ScalarProperty Name="Stage" ColumnName="Stage" />
+          <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
+          <ScalarProperty Name="ExpectedAmount" ColumnName="ExpectedAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_ExpenseReports">
+      <EntityTypeMapping TypeName="ProfitProModel.Tbl_ExpenseReports">
+        <MappingFragment StoreEntitySet="Tbl_ExpenseReports">
+          <ScalarProperty Name="ExpenseReportID" ColumnName="ExpenseReportID" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="AssociateID" ColumnName="AssociateID" />
+          <ScalarProperty Name="ExpenseType" ColumnName="ExpenseType" />
+          <ScalarProperty Name="ExpenseDate" ColumnName="ExpenseDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="Descr" ColumnName="Descr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_addTime" FunctionName="ProfitProModel.Store.usp_addTime" />
+    <FunctionImportMapping FunctionImportName="usp_displayExpenses" FunctionName="ProfitProModel.Store.usp_displayExpenses">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProfitProModel.usp_displayExpenses_Result">
+          <ScalarProperty Name="ExpenseType" ColumnName="ExpenseType" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="Descr" ColumnName="Descr" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_displayTotalExpense" FunctionName="ProfitProModel.Store.usp_displayTotalExpense">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProfitProModel.usp_displayTotalExpense_Result">
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="TotalExpense" ColumnName="TotalExpense" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_impbysalary" FunctionName="ProfitProModel.Store.usp_impbysalary" />
+    <FunctionImportMapping FunctionImportName="usp_insExpenses" FunctionName="ProfitProModel.Store.usp_insExpenses" />
+    <FunctionImportMapping FunctionImportName="usp_ProfitMargin" FunctionName="ProfitProModel.Store.usp_ProfitMargin" />
+    <FunctionImportMapping FunctionImportName="usp_selectdesignation" FunctionName="ProfitProModel.Store.usp_selectdesignation" />
+    <FunctionImportMapping FunctionImportName="usp_ShowName" FunctionName="ProfitProModel.Store.usp_ShowName" />
+    <FunctionImportMapping FunctionImportName="usp_TotalProfit" FunctionName="ProfitProModel.Store.usp_TotalProfit" />
+    <FunctionImportMapping FunctionImportName="usp_Validate" FunctionName="ProfitProModel.Store.usp_Validate" />
+    <FunctionImportMapping FunctionImportName="usp_viewProject" FunctionName="ProfitProModel.Store.usp_viewProject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProfitProModel.usp_viewProject_Result">
+          <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+          <ScalarProperty Name="ProjectDescr" ColumnName="ProjectDescr" />
+          <ScalarProperty Name="ProjectStartDate" ColumnName="ProjectStartDate" />
+          <ScalarProperty Name="ProjectEndDate" ColumnName="ProjectEndDate" />
+          <ScalarProperty Name="Technology" ColumnName="Technology" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_viewTimesheet" FunctionName="ProfitProModel.Store.usp_viewTimesheet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProfitProModel.usp_viewTimesheet_Result">
+          <ScalarProperty Name="TimesheetID" ColumnName="TimesheetID" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="Datee" ColumnName="Datee" />
+          <ScalarProperty Name="hourss" ColumnName="hourss" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

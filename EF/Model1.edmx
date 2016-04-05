@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProfitProModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ProfitProModelStoreContainer">
+          <EntitySet Name="Tbl_Associate" EntityType="ProfitProModel.Store.Tbl_Associate" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_Associatelogin" EntityType="ProfitProModel.Store.Tbl_Associatelogin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_ContractTerms" EntityType="ProfitProModel.Store.Tbl_ContractTerms" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_ExpenseReports" EntityType="ProfitProModel.Store.Tbl_ExpenseReports" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Tbl_Associate">
+          <Key>
+            <PropertyRef Name="AssociateID" />
+          </Key>
+          <Property Name="AssociateID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="AName" Type="varchar" MaxLength="20" />
+          <Property Name="Designation" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Tbl_Associatelogin">
+          <Key>
+            <PropertyRef Name="AssociateID" />
+          </Key>
+          <Property Name="AssociateID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="APassword" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Tbl_ContractTerms">
+          <Key>
+            <PropertyRef Name="ContractTermID" />
+          </Key>
+          <Property Name="ContractTermID" Type="int" Nullable="false" />
+          <Property Name="ContractID" Type="int" />
+          <Property Name="Stage" Type="varchar" MaxLength="20" />
+          <Property Name="ExpectedDate" Type="varchar" MaxLength="20" />
+          <Property Name="ExpectedAmount" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_ExpenseReports">
+          <Key>
+            <PropertyRef Name="ExpenseReportID" />
+          </Key>
+          <Property Name="ExpenseReportID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="AssociateID" Type="int" />
+          <Property Name="ExpenseType" Type="varchar" MaxLength="30" />
+          <Property Name="ExpenseDate" Type="varchar" MaxLength="15" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="Currency" Type="varchar" MaxLength="6" />
+          <Property Name="Descr" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Function Name="usp_addTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TimesheetID" Type="int" Mode="In" />
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+          <Parameter Name="Activity" Type="varchar" Mode="In" />
+          <Parameter Name="Datee" Type="varchar" Mode="In" />
+          <Parameter Name="hourss" Type="float" Mode="In" />
+        </Function>
+        <Function Name="usp_displayExpenses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_displayTotalExpense" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_impbysalary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="salary" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_insExpenses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+          <Parameter Name="AssociateID" Type="int" Mode="In" />
+          <Parameter Name="ExpenseType" Type="varchar" Mode="In" />
+          <Parameter Name="ExpenseDate" Type="varchar" Mode="In" />
+          <Parameter Name="Amount" Type="money" Mode="In" />
+          <Parameter Name="Currency" Type="varchar" Mode="In" />
+          <Parameter Name="Descr" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ProfitMargin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_selectdesignation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AssociateID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ShowName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AssociateID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_TotalProfit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Validate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AssociateID" Type="nvarchar" Mode="In" />
+          <Parameter Name="APassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_viewProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_viewTimesheet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+        </Function>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'ProfitPro.dbo.Tbl_Projects' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="Tbl_Projects">
+        <Property Name="ProjectID" Type="int" />
+        <Property Name="ContractID" Type="int" />
+        <Property Name="ProjectDescr" Type="varchar" MaxLength="30" />
+        <Property Name="ProjectStartDate" Type="varchar" MaxLength="30" />
+        <Property Name="ProjectEndDate" Type="varchar" MaxLength="30" />
+        <Property Name="Technology" Type="varchar" MaxLength="30" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'ProfitPro.dbo.Tbl_TimesheetData' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="Tbl_TimesheetData">
+        <Property Name="TimesheetID" Type="int" />
+        <Property Name="ProjectID" Type="int" />
+        <Property Name="Activity" Type="varchar" MaxLength="20" />
+        <Property Name="Datee" Type="varchar" MaxLength="15" />
+        <Property Name="hourss" Type="float" />
+      </EntityType>-->
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProfitProModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ProfitProEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Associate" EntityType="ProfitProModel.Tbl_Associate" />
+          <EntitySet Name="Tbl_Associatelogin" EntityType="ProfitProModel.Tbl_Associatelogin" />
+          <EntitySet Name="Tbl_ContractTerms" EntityType="ProfitProModel.Tbl_ContractTerms" />
+          <EntitySet Name="Tbl_ExpenseReports" EntityType="ProfitProModel.Tbl_ExpenseReports" />
+          <FunctionImport Name="usp_addTime">
+            <Parameter Name="TimesheetID" Mode="In" Type="Int32" />
+            <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+            <Parameter Name="Activity" Mode="In" Type="String" />
+            <Parameter Name="Datee" Mode="In" Type="String" />
+            <Parameter Name="hourss" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="usp_displayExpenses" ReturnType="Collection(ProfitProModel.usp_displayExpenses_Result)">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_displayTotalExpense" ReturnType="Collection(ProfitProModel.usp_displayTotalExpense_Result)">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_impbysalary" ReturnType="Collection(Double)">
+          <Parameter Name="salary" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_insExpenses">
+            <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+            <Parameter Name="AssociateID" Mode="In" Type="Int32" />
+            <Parameter Name="ExpenseType" Mode="In" Type="String" />
+            <Parameter Name="ExpenseDate" Mode="In" Type="String" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="Currency" Mode="In" Type="String" />
+            <Parameter Name="Descr" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProfitMargin" ReturnType="Collection(Decimal)">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_selectdesignation" ReturnType="Collection(String)">
+          <Parameter Name="AssociateID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ShowName" ReturnType="Collection(String)">
+          <Parameter Name="AssociateID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TotalProfit" ReturnType="Collection(Decimal)">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Validate" ReturnType="Collection(Int32)">
+            <Parameter Name="AssociateID" Mode="In" Type="String" />
+            <Parameter Name="APassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_viewProject" ReturnType="Collection(ProfitProModel.usp_viewProject_Result)">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_viewTimesheet" ReturnType="Collection(ProfitProModel.usp_viewTimesheet_Result)">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Tbl_Associate">
+          <Key>
+            <PropertyRef Name="AssociateID" />
+          </Key>
+          <Property Name="AssociateID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="AName" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Designation" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Associatelogin">
+          <Key>
+            <PropertyRef Name="AssociateID" />
+          </Key>
+          <Property Name="AssociateID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="APassword" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tbl_ContractTerms">
+          <Key>
+            <PropertyRef Name="ContractTermID" />
+          </Key>
+          <Property Name="ContractTermID" Type="Int32" Nullable="false" />
+          <Property Name="ContractID" Type="Int32" />
+          <Property Name="Stage" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="ExpectedDate" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="ExpectedAmount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Tbl_ExpenseReports">
+          <Key>
+            <PropertyRef Name="ExpenseReportID" />
+          </Key>
+          <Property Name="ExpenseReportID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="AssociateID" Type="Int32" />
+          <Property Name="ExpenseType" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="ExpenseDate" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Currency" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="Descr" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <ComplexType Name="usp_displayExpenses_Result">
+          <Property Type="String" Name="ExpenseType" Nullable="true" MaxLength="30" />
+          <Property Type="Decimal" Name="Amount" Nullable="true" Precision="19" />
+          <Property Type="String" Name="Currency" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="Descr" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="usp_displayTotalExpense_Result">
+          <Property Type="Int32" Name="ProjectID" Nullable="true" />
+          <Property Type="Decimal" Name="TotalExpense" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="usp_viewProject_Result">
+          <Property Type="Int32" Name="ContractID" Nullable="true" />
+          <Property Type="String" Name="ProjectDescr" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ProjectStartDate" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ProjectEndDate" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Technology" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="usp_viewTimesheet_Result">
+          <Property Type="Int32" Name="TimesheetID" Nullable="true" />
+          <Property Type="String" Name="Activity" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Datee" Nullable="true" MaxLength="15" />
+          <Property Type="Double" Name="hourss" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProfitProModelStoreContainer" CdmEntityContainer="ProfitProEntities">
+          <EntitySetMapping Name="Tbl_Associate">
+            <EntityTypeMapping TypeName="ProfitProModel.Tbl_Associate">
+              <MappingFragment StoreEntitySet="Tbl_Associate">
+                <ScalarProperty Name="AssociateID" ColumnName="AssociateID" />
+                <ScalarProperty Name="AName" ColumnName="AName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Associatelogin">
+            <EntityTypeMapping TypeName="ProfitProModel.Tbl_Associatelogin">
+              <MappingFragment StoreEntitySet="Tbl_Associatelogin">
+                <ScalarProperty Name="AssociateID" ColumnName="AssociateID" />
+                <ScalarProperty Name="APassword" ColumnName="APassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ContractTerms">
+            <EntityTypeMapping TypeName="ProfitProModel.Tbl_ContractTerms">
+              <MappingFragment StoreEntitySet="Tbl_ContractTerms">
+                <ScalarProperty Name="ContractTermID" ColumnName="ContractTermID" />
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="Stage" ColumnName="Stage" />
+                <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
+                <ScalarProperty Name="ExpectedAmount" ColumnName="ExpectedAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ExpenseReports">
+            <EntityTypeMapping TypeName="ProfitProModel.Tbl_ExpenseReports">
+              <MappingFragment StoreEntitySet="Tbl_ExpenseReports">
+                <ScalarProperty Name="ExpenseReportID" ColumnName="ExpenseReportID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="AssociateID" ColumnName="AssociateID" />
+                <ScalarProperty Name="ExpenseType" ColumnName="ExpenseType" />
+                <ScalarProperty Name="ExpenseDate" ColumnName="ExpenseDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_addTime" FunctionName="ProfitProModel.Store.usp_addTime" />
+          <FunctionImportMapping FunctionImportName="usp_displayExpenses" FunctionName="ProfitProModel.Store.usp_displayExpenses">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProfitProModel.usp_displayExpenses_Result">
+                <ScalarProperty Name="ExpenseType" ColumnName="ExpenseType" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_displayTotalExpense" FunctionName="ProfitProModel.Store.usp_displayTotalExpense">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProfitProModel.usp_displayTotalExpense_Result">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="TotalExpense" ColumnName="TotalExpense" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_impbysalary" FunctionName="ProfitProModel.Store.usp_impbysalary" />
+          <FunctionImportMapping FunctionImportName="usp_insExpenses" FunctionName="ProfitProModel.Store.usp_insExpenses" />
+          <FunctionImportMapping FunctionImportName="usp_ProfitMargin" FunctionName="ProfitProModel.Store.usp_ProfitMargin" />
+          <FunctionImportMapping FunctionImportName="usp_selectdesignation" FunctionName="ProfitProModel.Store.usp_selectdesignation" />
+          <FunctionImportMapping FunctionImportName="usp_ShowName" FunctionName="ProfitProModel.Store.usp_ShowName" />
+          <FunctionImportMapping FunctionImportName="usp_TotalProfit" FunctionName="ProfitProModel.Store.usp_TotalProfit" />
+          <FunctionImportMapping FunctionImportName="usp_Validate" FunctionName="ProfitProModel.Store.usp_Validate" />
+          <FunctionImportMapping FunctionImportName="usp_viewProject" FunctionName="ProfitProModel.Store.usp_viewProject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProfitProModel.usp_viewProject_Result">
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="ProjectDescr" ColumnName="ProjectDescr" />
+                <ScalarProperty Name="ProjectStartDate" ColumnName="ProjectStartDate" />
+                <ScalarProperty Name="ProjectEndDate" ColumnName="ProjectEndDate" />
+                <ScalarProperty Name="Technology" ColumnName="Technology" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_viewTimesheet" FunctionName="ProfitProModel.Store.usp_viewTimesheet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProfitProModel.usp_viewTimesheet_Result">
+                <ScalarProperty Name="TimesheetID" ColumnName="TimesheetID" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="Datee" ColumnName="Datee" />
+                <ScalarProperty Name="hourss" ColumnName="hourss" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

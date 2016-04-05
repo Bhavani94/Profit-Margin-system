@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProfitProModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ProfitProEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Tbl_Associate" EntityType="ProfitProModel.Tbl_Associate" />
+    <EntitySet Name="Tbl_Associatelogin" EntityType="ProfitProModel.Tbl_Associatelogin" />
+    <EntitySet Name="Tbl_ContractTerms" EntityType="ProfitProModel.Tbl_ContractTerms" />
+    <EntitySet Name="Tbl_ExpenseReports" EntityType="ProfitProModel.Tbl_ExpenseReports" />
+    <FunctionImport Name="usp_addTime">
+      <Parameter Name="TimesheetID" Mode="In" Type="Int32" />
+      <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+      <Parameter Name="Activity" Mode="In" Type="String" />
+      <Parameter Name="Datee" Mode="In" Type="String" />
+      <Parameter Name="hourss" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="usp_displayExpenses" ReturnType="Collection(ProfitProModel.usp_displayExpenses_Result)">
+      <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_displayTotalExpense" ReturnType="Collection(ProfitProModel.usp_displayTotalExpense_Result)">
+      <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_impbysalary" ReturnType="Collection(Double)">
+      <Parameter Name="salary" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_insExpenses">
+      <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+      <Parameter Name="AssociateID" Mode="In" Type="Int32" />
+      <Parameter Name="ExpenseType" Mode="In" Type="String" />
+      <Parameter Name="ExpenseDate" Mode="In" Type="String" />
+      <Parameter Name="Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="Currency" Mode="In" Type="String" />
+      <Parameter Name="Descr" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ProfitMargin" ReturnType="Collection(Decimal)">
+      <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_selectdesignation" ReturnType="Collection(String)">
+      <Parameter Name="AssociateID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ShowName" ReturnType="Collection(String)">
+      <Parameter Name="AssociateID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TotalProfit" ReturnType="Collection(Decimal)">
+      <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Validate" ReturnType="Collection(Int32)">
+      <Parameter Name="AssociateID" Mode="In" Type="String" />
+      <Parameter Name="APassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_viewProject" ReturnType="Collection(ProfitProModel.usp_viewProject_Result)">
+      <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_viewTimesheet" ReturnType="Collection(ProfitProModel.usp_viewTimesheet_Result)">
+      <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Tbl_Associate">
+    <Key>
+      <PropertyRef Name="AssociateID" />
+    </Key>
+    <Property Name="AssociateID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="AName" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Designation" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Associatelogin">
+    <Key>
+      <PropertyRef Name="AssociateID" />
+    </Key>
+    <Property Name="AssociateID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="APassword" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tbl_ContractTerms">
+    <Key>
+      <PropertyRef Name="ContractTermID" />
+    </Key>
+    <Property Name="ContractTermID" Type="Int32" Nullable="false" />
+    <Property Name="ContractID" Type="Int32" />
+    <Property Name="Stage" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="ExpectedDate" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="ExpectedAmount" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Tbl_ExpenseReports">
+    <Key>
+      <PropertyRef Name="ExpenseReportID" />
+    </Key>
+    <Property Name="ExpenseReportID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="AssociateID" Type="Int32" />
+    <Property Name="ExpenseType" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="ExpenseDate" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Currency" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+    <Property Name="Descr" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="usp_displayExpenses_Result">
+    <Property Type="String" Name="ExpenseType" Nullable="true" MaxLength="30" />
+    <Property Type="Decimal" Name="Amount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="Currency" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="Descr" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="usp_displayTotalExpense_Result">
+    <Property Type="Int32" Name="ProjectID" Nullable="true" />
+    <Property Type="Decimal" Name="TotalExpense" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="usp_viewProject_Result">
+    <Property Type="Int32" Name="ContractID" Nullable="true" />
+    <Property Type="String" Name="ProjectDescr" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="ProjectStartDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="ProjectEndDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Technology" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="usp_viewTimesheet_Result">
+    <Property Type="Int32" Name="TimesheetID" Nullable="true" />
+    <Property Type="String" Name="Activity" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Datee" Nullable="true" MaxLength="15" />
+    <Property Type="Double" Name="hourss" Nullable="true" />
+  </ComplexType>
+</Schema>

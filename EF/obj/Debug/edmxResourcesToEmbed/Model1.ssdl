@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProfitProModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ProfitProModelStoreContainer">
+    <EntitySet Name="Tbl_Associate" EntityType="ProfitProModel.Store.Tbl_Associate" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tbl_Associatelogin" EntityType="ProfitProModel.Store.Tbl_Associatelogin" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tbl_ContractTerms" EntityType="ProfitProModel.Store.Tbl_ContractTerms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tbl_ExpenseReports" EntityType="ProfitProModel.Store.Tbl_ExpenseReports" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Tbl_Associate">
+    <Key>
+      <PropertyRef Name="AssociateID" />
+    </Key>
+    <Property Name="AssociateID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="AName" Type="varchar" MaxLength="20" />
+    <Property Name="Designation" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Tbl_Associatelogin">
+    <Key>
+      <PropertyRef Name="AssociateID" />
+    </Key>
+    <Property Name="AssociateID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="APassword" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Tbl_ContractTerms">
+    <Key>
+      <PropertyRef Name="ContractTermID" />
+    </Key>
+    <Property Name="ContractTermID" Type="int" Nullable="false" />
+    <Property Name="ContractID" Type="int" />
+    <Property Name="Stage" Type="varchar" MaxLength="20" />
+    <Property Name="ExpectedDate" Type="varchar" MaxLength="20" />
+    <Property Name="ExpectedAmount" Type="int" />
+  </EntityType>
+  <EntityType Name="Tbl_ExpenseReports">
+    <Key>
+      <PropertyRef Name="ExpenseReportID" />
+    </Key>
+    <Property Name="ExpenseReportID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="int" />
+    <Property Name="AssociateID" Type="int" />
+    <Property Name="ExpenseType" Type="varchar" MaxLength="30" />
+    <Property Name="ExpenseDate" Type="varchar" MaxLength="15" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="Currency" Type="varchar" MaxLength="6" />
+    <Property Name="Descr" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <Function Name="usp_addTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TimesheetID" Type="int" Mode="In" />
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
+    <Parameter Name="Activity" Type="varchar" Mode="In" />
+    <Parameter Name="Datee" Type="varchar" Mode="In" />
+    <Parameter Name="hourss" Type="float" Mode="In" />
+  </Function>
+  <Function Name="usp_displayExpenses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_displayTotalExpense" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_impbysalary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="salary" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_insExpenses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
+    <Parameter Name="AssociateID" Type="int" Mode="In" />
+    <Parameter Name="ExpenseType" Type="varchar" Mode="In" />
+    <Parameter Name="ExpenseDate" Type="varchar" Mode="In" />
+    <Parameter Name="Amount" Type="money" Mode="In" />
+    <Parameter Name="Currency" Type="varchar" Mode="In" />
+    <Parameter Name="Descr" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ProfitMargin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_selectdesignation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AssociateID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ShowName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AssociateID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_TotalProfit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Validate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AssociateID" Type="nvarchar" Mode="In" />
+    <Parameter Name="APassword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_viewProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_viewTimesheet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
+  </Function>
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'ProfitPro.dbo.Tbl_Projects' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="Tbl_Projects">
+        <Property Name="ProjectID" Type="int" />
+        <Property Name="ContractID" Type="int" />
+        <Property Name="ProjectDescr" Type="varchar" MaxLength="30" />
+        <Property Name="ProjectStartDate" Type="varchar" MaxLength="30" />
+        <Property Name="ProjectEndDate" Type="varchar" MaxLength="30" />
+        <Property Name="Technology" Type="varchar" MaxLength="30" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'ProfitPro.dbo.Tbl_TimesheetData' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="Tbl_TimesheetData">
+        <Property Name="TimesheetID" Type="int" />
+        <Property Name="ProjectID" Type="int" />
+        <Property Name="Activity" Type="varchar" MaxLength="20" />
+        <Property Name="Datee" Type="varchar" MaxLength="15" />
+        <Property Name="hourss" Type="float" />
+      </EntityType>-->
+</Schema>

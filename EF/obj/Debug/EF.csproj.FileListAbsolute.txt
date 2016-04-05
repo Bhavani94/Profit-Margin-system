@@ -1,0 +1,8 @@
+E:\TestApp\Test2\EF\bin\Debug\EF.dll.config
+E:\TestApp\Test2\EF\bin\Debug\EF.dll
+E:\TestApp\Test2\EF\bin\Debug\EF.pdb
+E:\TestApp\Test2\EF\bin\Debug\EntityFramework.dll
+E:\TestApp\Test2\EF\bin\Debug\EntityFramework.xml
+E:\TestApp\Test2\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
+E:\TestApp\Test2\EF\obj\Debug\EF.dll
+E:\TestApp\Test2\EF\obj\Debug\EF.pdb
