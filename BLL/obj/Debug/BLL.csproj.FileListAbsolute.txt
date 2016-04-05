@@ -1,0 +1,11 @@
+E:\TestApp\Test2\BLL\bin\Debug\BLL.dll
+E:\TestApp\Test2\BLL\bin\Debug\BLL.pdb
+E:\TestApp\Test2\BLL\bin\Debug\DAL.dll
+E:\TestApp\Test2\BLL\bin\Debug\EF.dll
+E:\TestApp\Test2\BLL\bin\Debug\EntityFramework.dll
+E:\TestApp\Test2\BLL\bin\Debug\DAL.pdb
+E:\TestApp\Test2\BLL\bin\Debug\EF.pdb
+E:\TestApp\Test2\BLL\bin\Debug\EntityFramework.xml
+E:\TestApp\Test2\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+E:\TestApp\Test2\BLL\obj\Debug\BLL.dll
+E:\TestApp\Test2\BLL\obj\Debug\BLL.pdb
