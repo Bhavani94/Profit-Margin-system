@@ -1,0 +1,118 @@
+create database ProfitPRO;
+-----
+create table Tbl_ExpenseReports(ExpenseReportID integer primary key,ProjectID integer,AssociateID integer,ExpenseType varchar(30),ExpenseDate varchar(15),Amount money,Currency varchar(6),Descr varchar(30));
+-----
+insert into Tbl_TimesheetData values(TimesheetID integer,ProjectID integer,Activity varchar(20),Datee varchar(15),hourss float);
+-----
+create procedure addTime
+@TimesheetID integer,
+@ProjectID integer,
+@Activity varchar(20),
+@Datee varchar(15),
+@hourss float
+as
+begin
+insert into Tbl_TimesheetData values(@TimesheetID,@ProjectID,@Activity,@Datee,@hourss);
+end
+-----
+create procedure usp_displayExpenses
+@ProjectID integer
+as
+begin
+set nocount on;
+select ExpenseType,Amount,Currency,Descr from Tbl_ExpenseReports where ProjectID=@ProjectID;
+end 
+-----
+create procedure usp_insExpenses
+@ExpenseReportID integer, 
+@ProjectID integer,
+@AssociateID integer,
+@ExpenseType varchar(30),
+@ExpenseDate varchar(15),
+@Amount money,
+@Currency varchar(6),
+@Descr varchar(30)
+as
+begin
+insert into Tbl_ExpenseReports values(@ExpenseReportID,@ProjectID,@AssociateID,@ExpenseType,@ExpenseDate,@Amount,@Currency,@Descr)
+end 
+-----
+procedure usp_viewTimesheet
+@ProjectID integer
+as
+begin
+select TimesheetID,Activity,Datee,hourss from Tbl_TimesheetData where ProjectID=@ProjectID;
+end
+-----
+create table Tbl_Associatelogin(AssociateID  varchar(20) primary key,APassword varchar(30)); 
+-----
+create table Tbl_Associate (AssociateID varchar(20) primary key,AName varchar(20),Designation varchar(20));
+insert into Tbl_Associate values('CTS1004','Kirti','Associate');
+insert into Tbl_Associatelogin values('CTS1004','random1')
+create procedure [dbo].[usp_selectdesignation]
+@AssociateID nvarchar(20)
+as 
+begin
+select Designation from Tbl_Associate where AssociateID=@AssociateID;
+end
+create procedure [dbo].[usp_Validate]
+@AssociateID nvarchar(20),
+@APassword nvarchar(20)
+
+as 
+begin
+declare @count int
+select @count=COUNT(AssociateID) from Tbl_Associatelogin where AssociateID=@AssociateID and APassword=@APassword
+
+if(@count=1)
+begin
+select 1 as ReturnCode;
+end
+
+else
+begin
+select -1 as ReturnCode;
+end
+
+end
+create procedure usp_ShowName
+@AssociateID varchar(20)
+as
+begin
+select AName from Tbl_Associate where AssociateID=@AssociateID
+end
+-----------
+create table Tbl_ContractTerms(ContractTermID integer primary key,ContractID integer,Stage varchar(20),ExpectedDate varchar(20),ExpectedAmount integer);
+insert into Tbl_ContractTerms values(1000001,100003,'Stage1','2015-02-21',100000);
+create procedure usp_TotalProfit
+@ProjectID integer
+as
+begin
+set nocount on;
+select (select ExpectedAmount from Tbl_ContractTerms ) - (select sum(amount) from Tbl_ExpenseReports where ProjectID=@ProjectID);
+end
+create procedure usp_ProfitMargin
+@ProjectID integer
+as
+begin
+set nocount on;
+select( ((select ExpectedAmount from Tbl_ContractTerms ) - (select sum(amount) from Tbl_ExpenseReports where ProjectID=@ProjectID)) /(select ExpectedAmount from Tbl_ContractTerms) * 100);
+end
+create table Tbl_Projects(ProjectID integer, ContractID integer,ProjectDescr varchar(30), ProjectStartDate varchar(30), ProjectEndDate varchar(30),Technology varchar(30));
+insert into Tbl_Projects (ProjectID, ContractID,ProjectDescr,ProjectStartDate,ProjectEndDate,Technology) values(1000000002,100002,'Processing2','2015-02-04','2015-05-04','Java');
+create procedure usp_viewProject
+@ProjectID integer
+as
+begin
+select ContractID,ProjectDescr,ProjectStartDate,ProjectEndDate,Technology from Tbl_Projects where ProjectID=@ProjectID;
+end
+-------
+create procedure usp_impbysalary
+@salary integer
+as
+begin
+set nocount on;
+
+
+select(select ExpectedAmount from Tbl_ContractTerms)- (select (select sum(Amount) from Tbl_ExpenseReports) - (select (CAST(@salary AS FLOAT)/100 )  * (select sum(Amount) from Tbl_ExpenseReports where ExpenseType=@)));
+end
